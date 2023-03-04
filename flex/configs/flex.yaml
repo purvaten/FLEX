@@ -1,0 +1,31 @@
+best_mnet_amass: 'flex/pretrained_models/ckpts/vposer_amass/snapshots/V02_05_epoch=13_val_loss=0.03.ckpt'  # Pre-trained pose-prior (trained on AMASS)
+best_mnet_grab: 'flex/pretrained_models/ckpts/vposer_grab.pt'  # Pre-trained HAND-GRASPING (trained on GRAB right-hand)
+best_pgprior: 'flex/pretrained_models/ckpts/pgp.pth'  # Pre-trained PGP (trained on AMASS)
+orient_optim_type: 'ypr'
+topk: 10
+pgprior: True
+vposer_dset: 'amass'
+model_name: 'latent'
+# ---
+alpha_rh_match: 20.0
+alpha_interesting_verts: 2.
+alpha_lowermost: 0.0
+alpha_obstacle_in: 1000.0
+alpha_obstacle_out: 0.0
+alpha_gaze: 0.01
+alpha_wrist: 0.01
+obstacle_sbj2obj_extra: 'connected_components'
+# ---
+n_iter: 500
+num_stagewise: '1'
+latent_lr: 1e-3
+subsample_sbj: True
+rh_match_type: 'verts'
+intersection_thresh: 0.005
+iteration_filter: [100, 150, 200, 250, 300]
+# ---
+prediction_scale: {'z': 5, 'transl': 10, 'orient': 20, 'w': 0, 'angle': 20}
+gradient_scale: {'z': 10, 'transl': 0.3, 'orient': 1, 'w': 0, 'angle': 1}
+save_every_step: False
+# ---
+bs: 500
