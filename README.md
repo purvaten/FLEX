@@ -182,7 +182,6 @@ In order to run FLEX, create a `data/` directory and follow the steps below:
     │   ├── V02_05.log
     │   └── V02_05.yaml
     │
-    ├── vposer_grab.pt
     ├── coarsenet.pt
     ├── refinenet.pt
     └── pgp.pth
