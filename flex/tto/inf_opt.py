@@ -791,7 +791,7 @@ class ScaleGradient(nn.Module):
         super().__init__()
         self.scale = scale
         # For some reason, defining it in the backward() function doesn't work
-        self.register_backward_hook(partial(backward_hook, scale=scale))
+        self.register_full_backward_hook(partial(backward_hook, scale=scale))
 
     def forward(self, x):
         return x
@@ -1023,9 +1023,9 @@ def optimize_findz(
             model.latent_z = nn.Parameter(model.latent_z[half_good].data, requires_grad=True)
 
             for sid in range(len(stages)):
-                losses_stages_total[sid] = losses_stages_total[sid][:, :, half_good]
-                losses_stages_rh_match[sid] = losses_stages_rh_match[sid][:, :, half_good]
-                losses_stages_obstacle_in[sid] = losses_stages_obstacle_in[sid][:, :, half_good]
+                losses_stages_total[sid] = losses_stages_total[sid][:, :, half_good.cpu().detach()]
+                losses_stages_rh_match[sid] = losses_stages_rh_match[sid][:, :, half_good.cpu().detach()]
+                losses_stages_obstacle_in[sid] = losses_stages_obstacle_in[sid][:, :, half_good.cpu().detach()]
 
             bs = new_batch_size
             best_loss = best_loss[half_good]

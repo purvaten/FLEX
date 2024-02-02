@@ -108,7 +108,6 @@ def makepath(desired_path, isfile = False):
     :param desired_path: can be path to a file or a folder name
     :return:
     '''
-    import os
     if isfile:
         if not os.path.exists(os.path.dirname(desired_path)):os.makedirs(os.path.dirname(desired_path))
     else:
